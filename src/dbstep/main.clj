@@ -48,6 +48,13 @@
   
   (def dub-bass-note-seq (note-sequencer buf-5 meter-cnt-bus16 dub-bass-note-bus))
 
+  (def foo-note-seq (note-sequencer buf-6 meter-cnt-bus16 foo-note-bus))
+
+  (def supersaw2-1-note-seq (note-sequencer buf-7 meter-cnt-bus16 supersaw2-1-note-bus))
+  (def supersaw2-2-note-seq (note-sequencer buf-8 meter-cnt-bus16 supersaw2-2-note-bus))
+  (def supersaw2-3-note-seq (note-sequencer buf-9 meter-cnt-bus16 supersaw2-3-note-bus))
+  (def supersaw2-4-note-seq (note-sequencer buf-10 meter-cnt-bus16 supersaw2-4-note-bus))
+  
   )
 
 ; Empty palette
@@ -57,4 +64,8 @@
   (buffer-write! buf-1 [0 0 0 0 0 0 0 0])  ;; click
   (buffer-write! buf-2 [0 0 0 0 0 0 0 0])  ;; boom
   (buffer-write! buf-3 [0 0 0 0 0 0 0 0])) ;; subby
+
+(do
+  (buffer-write! buf-4 [0 0 0 0 0 0 0 0])  ;; melody
+  (buffer-write! buf-5 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])) ;; bass
 

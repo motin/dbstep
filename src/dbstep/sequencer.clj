@@ -29,6 +29,11 @@
 (defonce buf-3 (buffer 8))
 (defonce buf-4 (buffer 8))
 (defonce buf-5 (buffer 16))
+(defonce buf-6 (buffer 16))
+(defonce buf-7 (buffer 16))
+(defonce buf-8 (buffer 16))
+(defonce buf-9 (buffer 16))
+(defonce buf-10 (buffer 16))
 
 ;; Next let's create some timing busses. These can be visualised as
 ;; 'patch cables' - wires that carry pulse signals that may be
@@ -47,6 +52,11 @@
 (defonce meter-cnt-bus16 (control-bus))
 (defonce dub-note-bus  (control-bus))
 (defonce dub-bass-note-bus (control-bus))
+(defonce foo-note-bus (control-bus))
+(defonce supersaw2-1-note-bus (control-bus))
+(defonce supersaw2-2-note-bus (control-bus))
+(defonce supersaw2-3-note-bus (control-bus))
+(defonce supersaw2-4-note-bus (control-bus))
 
 (def BEAT-FRACTION "Number of global pulses per beat" 30)
 
@@ -215,3 +225,16 @@
                 (if (major? degree)
                     :major
                     :minor)))
+
+;; Who wants a minior bassline starting at C2? I do!
+(defn rand-bass []
+  (let [chords (take 4 (get-chord-seq :i))
+        notes (flatten (map #(take 4 (repeatedly (fn [] (rand-nth %)))) (map #(degree->chord % :C2) chords)))
+        mean (float (/ (reduce + notes) (count notes)))]
+    (println "--- Changing Bass ---")
+    (println "Chords " chords)
+    (println "Notes " notes)
+    (println "Number of unique notes " (count (frequencies notes)))
+    (println "Mean " mean)
+    (println "Variance " (/ (reduce + (map (fn [x] (* ( - x mean) (- x mean))) notes)) (dec (count notes))))
+    (buffer-write! buf-5 notes)))

@@ -39,19 +39,6 @@
 ;; Write these bad-asses to the buffer!
 (buffer-write! buf-5 (flatten (map #(take 4 (repeatedly (fn [] (rand-nth %)))) (map #(degree->chord % :C4) (take 4 (get-chord-seq))))))
 
-;; Who wants a minior bassline starting at C2? I do!
-(defn rand-bass []
-  (let [chords (take 4 (get-chord-seq :i))
-        notes (flatten (map #(take 4 (repeatedly (fn [] (rand-nth %)))) (map #(degree->chord % :C2) chords)))
-        mean (float (/ (reduce + notes) (count notes)))]
-    (println "--- Changing Bass ---")
-    (println "Chords " chords)
-    (println "Notes " notes)
-    (println "Number of unique notes " (count (frequencies notes)))
-    (println "Mean " mean)
-    (println "Variance " (/ (reduce + (map (fn [x] (* ( - x mean) (- x mean))) notes)) (dec (count notes))))
-    (buffer-write! buf-5 notes)))
-
 ;; Execute this a few times. :-)
 (rand-bass)
 

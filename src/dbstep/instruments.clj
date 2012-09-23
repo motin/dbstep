@@ -71,4 +71,11 @@
 (kill dub1)
 (kill dub2)
 
-; bass
+; Some demo instrument
+(definst foo [note 60 vel 0.8]
+  (let [freq (midicps note)]
+    (* vel
+       (env-gen (perc 0.01 0.2) 1 1 0 1 :action FREE)
+       (+ (sin-osc (/ freq 2))
+           (rlpf (saw freq) (* 1.1 freq) 0.4)))))
+
