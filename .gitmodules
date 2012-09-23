@@ -1,0 +1,3 @@
+[submodule "modules/tooloud"]
+	path = modules/tooloud
+	url = https://github.com/motin/tooloud.git
