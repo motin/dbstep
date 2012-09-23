@@ -65,4 +65,7 @@
 (defn read-data [filename] (mapify (csv/read-csv (io/reader filename))))
 (def data (read-data "../sample_data/sample_data.csv"))
 (def apple (read-data "../sample_data/apple_10k.csv"))
+(def fifty (read-data "../sample_data/50.csv"))
+(def diversity_by_10min (read-data "../sample_data/diversity_by_10min.csv"))
+(def volume_280_tatum (read-data "../sample_data/volume_280_tatum.csv"))
 ;(def foosdfsdfdsf (read-data "../sample_data/dfsdfdsfsfd_data.csv"))

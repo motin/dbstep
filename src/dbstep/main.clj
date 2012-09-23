@@ -19,6 +19,9 @@
         '[dbstep.sequencer]
 )
 
+;; Useful for variable inspection
+(defn dbg [x] (println x) x)
+
 ;; Now, let's start up all the synths, mapping each buffer to a particular instrument
 (do
   (def r-cnt (root-cnt))
@@ -26,6 +29,7 @@
   (def b-trg (beat-trg))
   (def r-trg (root-trg))
   (def m-cnt8  (meter-cnt meter-cnt-bus8 8))
+  (def m-cnt280  (meter-cnt meter-cnt-bus280 280))
   (def m-cnt16 (meter-cnt meter-cnt-bus16 16))
 
   (def kicks (doall
@@ -44,7 +48,7 @@
                 (for [x (range 8)]
                   (mono-sequencer :buf subby-s :beat-num x :sequencer buf-3))))
 
-  (def dub-note-seq (note-sequencer buf-4 meter-cnt-bus8 dub-note-bus))
+  (def dub-note-seq (note-sequencer buf-4 meter-cnt-bus280 dub-note-bus))
   
   (def dub-bass-note-seq (note-sequencer buf-5 meter-cnt-bus16 dub-bass-note-bus))
 
@@ -68,4 +72,7 @@
 (do
   (buffer-write! buf-4 [0 0 0 0 0 0 0 0])  ;; melody
   (buffer-write! buf-5 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])) ;; bass
+
+
+
 

@@ -27,7 +27,7 @@
 (defonce buf-1 (buffer 8))
 (defonce buf-2 (buffer 8))
 (defonce buf-3 (buffer 8))
-(defonce buf-4 (buffer 8))
+(defonce buf-4 (buffer 280))
 (defonce buf-5 (buffer 16))
 (defonce buf-6 (buffer 16))
 (defonce buf-7 (buffer 16))
@@ -50,6 +50,7 @@
 (defonce beat-cnt-bus  (control-bus)) ;; beat count
 (defonce meter-cnt-bus8 (control-bus))
 (defonce meter-cnt-bus16 (control-bus))
+(defonce meter-cnt-bus280 (control-bus))
 (defonce dub-note-bus  (control-bus))
 (defonce dub-bass-note-bus (control-bus))
 (defonce foo-note-bus (control-bus))
@@ -73,7 +74,7 @@
 (defsynth beat-cnt []
   (out:kr beat-cnt-bus (pulse-count (in:kr beat-trg-bus))))
 
-(defsynth meter-cnt [meter-cnt-bus 0 div 8]
+(defsynth meter-cnt [meter-cnt-bus 0 div 280]
   (out:kr meter-cnt-bus (mod (in:kr beat-cnt-bus) div)))
 
 ;; Now we get a little close to the sounds. Here's four nice sounding
@@ -94,6 +95,10 @@
                       (= beat-num (mod cnt 8))
                       beat-trg)
         vol      (set-reset-ff bar-trg)]
+
+    (print beat-trg)
+    (print bar-trg)
+    
     (out
      out-bus (* vol
                 amp
@@ -207,7 +212,7 @@
     (last e)))
 
 (defn get-chord-seq
-  ([] (get-chord-seq :I))
+  ([] (get-chord-seq :i))
   ([chord] (iterate get-next-chord chord)))
 
 (defn major?
