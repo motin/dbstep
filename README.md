@@ -6,6 +6,13 @@ Turns csv data (originated from NASDAQ quote data) into Dubstep music using Over
 
 ## Get started
 
+Clone the repo
+
+git clone https://github.com/motin/dbstep.git -b develop
+cd dbstep/
+git submodule init
+git submodule update
+
 Put csv files into a directory named sample_data next to the project directory. 
 Download the Dubstep Construction Kit from http://creativemonkeyz.com/free-stuff/dubstep-costruction-kit/ and extract it next to the project directory, so that it resides in a directory called Dubstep_construction_Kit.
 
